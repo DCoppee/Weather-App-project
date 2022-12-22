@@ -9,31 +9,53 @@ btn.addEventListener('click',function(){
         
         let userLoc = input.value;
         
-        let fetchName = (userLoc) => fetch('http://api.openweathermap.org/data/2.5/weather?q='+userLoc+'&appid='+api+'&units=metric')
-        
+        let fetchName = (userLoc) => fetch('http://api.openweathermap.org/data/2.5/forecast?q='+userLoc+'&appid='+api+'&units=metric')
+                                        
         fetchName(userLoc)    
         
         .then (response => response.json())
-        .then((data)=>{
-            console.log(data);
-
-            let cityName = data.name
-            console.log(cityName);
+        .then((json)=>{ console.log(json);
+            let cityName = json.city.name;
 
             const city = document.querySelector('#div-city');
             city.innerHTML = cityName;
-
-            let date = data.dt;
-            let dtGMT = new Date(date * 1000);
-            console.log(dtGMT.toLocaleDateString());
-
-            let temp = data.main.temp;
-            console.log(temp+'°');
-
-            let weather = data.weather[0].main;
-            console.log(weather);
-            })
         
+        //---Données du day1---//
+            let date = json.list[0].dt;
+            let dtGMT = new Date(date * 1000);
+            let dateString = dtGMT.toLocaleDateString();
+
+            let temp = json.list[0].main.temp;
+
+            let weather = json.list[0].weather[0].main;
+
+            const day1 = document.querySelector('#day1-meteo');
+            day1.innerHTML = dateString+"<br />"+temp+'°'+"<br />"+weather;
+            
+            let icon1 = document.createElement('img');
+            day1.append(icon1);
+            let icon = json.list[0].weather[0].icon;
+            let iconURL = 'http://openweathermap.org/img/wn/'+icon+'@2x.png';
+            icon1.setAttribute("src",iconURL);
+            
+        //---Données du day2---//
+            let date2 = json.list[8].dt;
+            let dtGMT2 = new Date(date2 * 1000);
+            let dateString2 = dtGMT2.toLocaleDateString(); console.log(dateString2);
+
+            let temp2 = json.list[8].main.temp;
+
+            let weather2 = json.list[8].weather[0].main;
+
+            const day2 = document.querySelector('#day2-meteo');
+            day2.innerHTML = dateString2+"<br />"+temp2+'°'+"<br />"+weather2;
+            
+            let icon2 = document.createElement('img');
+            day2.append(icon2);
+            let iconb = json.list[8].weather[0].icon;
+            let iconURL2 = 'http://openweathermap.org/img/wn/'+iconb+'@2x.png';
+            icon2.setAttribute("src",iconURL2);
+            })
     })
 /*})*/
             
