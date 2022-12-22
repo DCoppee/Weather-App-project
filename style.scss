@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: -webkit-linear-gradient(180deg, rgb(247, 203, 203), rgb(255, 255, 255));
+    background: linear-gradient(180deg, rgb(247, 203, 203), rgb(255, 255, 255));
+    display:block;
+}
+.div-header {
+height: 80px;
+text-align: center;
+}
+.div-input {
+    display: flex;
+    justify-content: center;
+}
+#input-main {
+    border:none;
+}
+#button-main {
+    border:none;
+    height:28px;
+}
