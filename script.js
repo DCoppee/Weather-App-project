@@ -1,3 +1,5 @@
+//Functional code, but... I do repeat myself ;-)
+
 const api = 'b3a019163e3b097b458963f8383804bd';
 
 const body = document.body;
@@ -5,143 +7,195 @@ const body = document.body;
 const input = document.querySelector('#input-main');
 const btn = document.querySelector('#button-main');
 
-btn.addEventListener('click',function(){
-        
-        let userLoc = input.value;
-        
-        let fetchName = (userLoc) => fetch('http://api.openweathermap.org/data/2.5/forecast?q='+userLoc+'&appid='+api+'&units=metric')
-                                        
-        fetchName(userLoc)    
-        
-        .then (response => response.json())
-        .then((json)=>{ console.log(json);
-            let cityName = json.city.name;
+let search = btn.addEventListener('click',function() {
 
-            const city = document.querySelector('#div-city');
-            city.innerHTML = cityName;
+    let userLoc = input.value;
+    
+    async function whatsTheWeather(){
+
+        try {
+
+        let response = await fetch('http://api.openweathermap.org/data/2.5/forecast?q='+userLoc+'&appid='+api+'&units=metric')
+        json = await response.json()
+
+        let cityName = json.city.name;
+        let country = json.city.country;
+        let timeZone = json.city.timezone;
+
+        let newDateA = new Date();
+        let time = newDateA.toLocaleString({timeZone: timeZone,});
         
-        //---Données du day1---//
-            let date = json.list[0].dt;
-            let dtGMT = new Date(date * 1000);
-            let dateString = dtGMT.toLocaleDateString();
+        let main = document.querySelector('.main')
+        let city = document.createElement('div');
+        city.setAttribute('id','div-city');
+        main.appendChild(city);
+        city.innerHTML = cityName+', '+country+"<br />"+time;
+        
+    //---Données du day1---//
+        let divMeteo = document.createElement('div');
+        divMeteo.setAttribute('id','div-meteo');
+        main.appendChild(divMeteo);
 
-            let temp = json.list[0].main.temp;
+        let divDay1 = document.createElement('div');
+        divDay1.setAttribute('id','day1-meteo');
+        divMeteo.appendChild(divDay1);
 
-            let weather = json.list[0].weather[0].main;
+        let today = document.createElement('div');
+        today.setAttribute('class','today');
+        divDay1.appendChild(today);
+        today.innerHTML = "Today";
 
-            const day1 = document.querySelector('#day1-meteo');
-            day1.innerHTML = dateString+"<br />"+temp+'°'+"<br />"+weather;
+        let temp = json.list[0].main.temp;
+        let tempD1 = document.createElement('div');
+        tempD1.setAttribute('class','tempD1');
+        divDay1.appendChild(tempD1);
+        tempD1.innerHTML = temp+'°';
+
+        let weather = json.list[0].weather[0].main;
+        let weatherD1 = document.createElement('div');
+        weatherD1.setAttribute('class','weatherD1');
+        divDay1.appendChild(weatherD1);
+        weatherD1.innerHTML = weather;
             
-            let icon1 = document.createElement('img');
-            day1.append(icon1);
-            let icon = json.list[0].weather[0].icon;
-            let iconURL = 'http://openweathermap.org/img/wn/'+icon+'@2x.png';
-            icon1.setAttribute("src",iconURL);
+        let icon1 = document.createElement('img');
+        icon1.setAttribute('class','icon1');
+        divDay1.append(icon1);
+        let icon = json.list[0].weather[0].icon;
+        let iconURL = 'http://openweathermap.org/img/wn/'+icon+'@2x.png';
+        icon1.setAttribute("src",iconURL);
             
-        //---Données du day2---//
-            let date2 = json.list[8].dt;
-            let dtGMT2 = new Date(date2 * 1000);
-            let dateString2 = dtGMT2.toLocaleDateString(); console.log(dateString2);
+    //---Données du day2---//
+        let divDay2 = document.createElement('div');
+        divDay2.setAttribute('id','day2-meteo');
+        divMeteo.appendChild(divDay2);
 
-            let temp2 = json.list[8].main.temp;
+        let date2 = json.list[8].dt;
+        let dtGMT2 = new Date(date2 * 1000);
+        let dateString2 = dtGMT2.toLocaleDateString();
 
-            let weather2 = json.list[8].weather[0].main;
+        let dateD2 = document.createElement('div');
+        dateD2.setAttribute('class','dateD2');
+        divDay2.appendChild(dateD2);
+        dateD2.innerHTML = dateString2;
 
-            const day2 = document.querySelector('#day2-meteo');
-            day2.innerHTML = dateString2+"<br />"+temp2+'°'+"<br />"+weather2;
+        let temp2 = json.list[8].main.temp;
+        let tempD2 = document.createElement('div');
+        tempD2.setAttribute('class','tempD2');
+        divDay2.appendChild(tempD2);
+        tempD2.innerHTML = temp2+'°';
+
+        let weather2 = json.list[8].weather[0].main;
+        let weatherD2 = document.createElement('div');
+        weatherD2.setAttribute('class','weatherD2');
+        divDay2.appendChild(weatherD2);
+        weatherD2.innerHTML = weather2;
             
-            let icon2 = document.createElement('img');
-            day2.append(icon2);
-            let iconb = json.list[8].weather[0].icon;
-            let iconURL2 = 'http://openweathermap.org/img/wn/'+iconb+'@2x.png';
-            icon2.setAttribute("src",iconURL2);
-            })
-    })
-/*})*/
-            
+        let icon2 = document.createElement('img');
+        divDay2.append(icon2);
+        let iconB = json.list[8].weather[0].icon;
+        let iconURL2 = 'http://openweathermap.org/img/wn/'+iconB+'@2x.png';
+        icon2.setAttribute("src",iconURL2);
 
-//Morceaux peut-être pour plus tard
-/*
-const city = document.querySelector('#div-city');
-
-const day1 = document.querySelector('#day1');
-const day2 = document.querySelector('#day2');
-const day3 = document.querySelector('#day3');
-const day4 = document.querySelector('#day4');
-const day5 = document.querySelector('#day5');
-
-let icon1 = document.querySelector('#icon1');
-let icon2 = document.querySelector('#icon2');
-let icon3 = document.querySelector('#icon3');
-let icon4 = document.querySelector('#icon4');
-let icon5 = document.querySelector('#icon5');
-
-let clearSky = 'http://openweathermap.org/img/wn/01d@2x.png';
-let fewClouds = 'http://openweathermap.org/img/wn/02d@2x.png';
-let scatteredClouds = 'http://openweathermap.org/img/wn/03d@2x.png';
-let brokenClouds = 'http://openweathermap.org/img/wn/04d@2x.png';
-let showerRain = 'http://openweathermap.org/img/wn/09d@2x.png';
-let rain = 'http://openweathermap.org/img/wn/10d@2x.png';
-let thunderstorm = 'http://openweathermap.org/img/wn/11d@2x.png';
-let snow = 'http://openweathermap.org/img/wn/13d@2x.png';
-let mist = 'http://openweathermap.org/img/wn/50d@2x.png';*/
-
-/*const dt1 = document.createElement('span');
-body.appendChild(dt1);
-const temp1 = document.createElement('span');
-body.appendChild(temp1);
-
-const dt2 = document.createElement('span');
-body.appendChild(dt2);
-const temp2 = document.createElement('span');
-body.appendChild(temp2);
-
-const dt3 = document.createElement('span');
-body.appendChild(dt3);
-const temp3 = document.createElement('span');
-body.appendChild(temp3);
-
-const dt4 = document.createElement('span');
-body.appendChild(dt4);
-const temp4 = document.createElement('span');
-body.appendChild(temp4);
-
-const dt5 = document.createElement('span');
-body.appendChild(dt5);
-const temp5 = document.createElement('span');
-body.appendChild(temp5);*/
-
-/*let iconDescr = json.weather.main;
-
-        if (iconDescr === 'Clear sky') {
-            icon1.setAttribute('src','http://openweathermap.org/img/wn/01d@2x.png');
-        }
-        else if (iconDescr === 'Few clouds') {
-            icon1.setAttribute('src','http://openweathermap.org/img/wn/02d@2x.png');
-        }
-        else if (iconDescr === 'Scattered clouds') {
-            icon1.setAttribute('src','http://openweathermap.org/img/wn/03d@2x.png');
-        }
-        else if (iconDescr === 'Broken clouds') {
-            icon1.setAttribute('src','http://openweathermap.org/img/wn/04d@2x.png');
-        }
-        else if (iconDescr === 'Shower rain') {
-            icon1.setAttribute('src','http://openweathermap.org/img/wn/09d@2x.png');
-        }
-        else if (iconDescr === 'Rain') {
-            icon1.setAttribute('src','http://openweathermap.org/img/wn/10d@2x.png');
-        }
-        else if (iconDescr === 'Thunderstorm') {
-            icon1.setAttribute('src','http://openweathermap.org/img/wn/11d@2x.png');
-        }
-        else if (iconDescr === 'Snow') {
-            icon1.setAttribute('src','http://openweathermap.org/img/wn/13d@2x.png');
-        }
-        else if (iconDescr === 'Mist') {
-        icon1.setAttribute('src','http://openweathermap.org/img/wn/50d@2x.png');
-        }*/
+    //---Données du day3---//
+        let divDay3 = document.createElement('div');
+        divDay3.setAttribute('id','day3-meteo');
+        divMeteo.appendChild(divDay3);
         
-        /*icon2.setAttribute('src','http://openweathermap.org/img/wn/10d@2x.png');
-        icon3.setAttribute('src','http://openweathermap.org/img/wn/10d@2x.png');
-        icon4.setAttribute('src','http://openweathermap.org/img/wn/10d@2x.png');
-        icon5.setAttribute('src','http://openweathermap.org/img/wn/10d@2x.png');*/
+        let date3 = json.list[16].dt;
+        let dtGMT3 = new Date(date3 * 1000);
+        let dateString3 = dtGMT3.toLocaleDateString();
+
+        let dateD3 = document.createElement('div');
+        dateD3.setAttribute('class','dateD3');
+        divDay3.appendChild(dateD3);
+        dateD3.innerHTML = dateString3;
+
+        let temp3 = json.list[16].main.temp;
+        let tempD3 = document.createElement('div');
+        tempD3.setAttribute('class','tempD3');
+        divDay3.appendChild(tempD3);
+        tempD3.innerHTML = temp3+'°';
+
+        let weather3 = json.list[16].weather[0].main;
+        let weatherD3 = document.createElement('div');
+        weatherD3.setAttribute('class','weatherD3');
+        divDay3.appendChild(weatherD3);
+        weatherD3.innerHTML = weather3;
+            
+        let icon3 = document.createElement('img');
+        divDay3.append(icon3);
+        let iconC = json.list[16].weather[0].icon;
+        let iconURL3 = 'http://openweathermap.org/img/wn/'+iconC+'@2x.png';
+        icon3.setAttribute("src",iconURL3);
+
+    //---Données du day4---//
+        let divDay4 = document.createElement('div');
+        divDay4.setAttribute('id','day4-meteo');
+        divMeteo.appendChild(divDay4);
+
+        let date4 = json.list[24].dt;
+        let dtGMT4 = new Date(date4 * 1000);
+        let dateString4 = dtGMT4.toLocaleDateString();
+
+        let dateD4 = document.createElement('div');
+        dateD4.setAttribute('class','dateD4');
+        divDay4.appendChild(dateD4);
+        dateD4.innerHTML = dateString4;
+
+        let temp4 = json.list[24].main.temp;
+        let tempD4 = document.createElement('div');
+        tempD4.setAttribute('class','tempD4');
+        divDay4.appendChild(tempD4);
+        tempD4.innerHTML = temp4+'°';
+
+        let weather4 = json.list[24].weather[0].main;
+        let weatherD4 = document.createElement('div');
+        weatherD4.setAttribute('class','weatherD4');
+        divDay4.appendChild(weatherD4);
+        weatherD4.innerHTML = weather4;
+            
+        let icon4 = document.createElement('img');
+        divDay4.append(icon4);
+        let iconD = json.list[24].weather[0].icon;
+        let iconURL4 = 'http://openweathermap.org/img/wn/'+iconD+'@2x.png';
+        icon4.setAttribute("src",iconURL4);
+
+    //---Données du day5---//
+        let divDay5 = document.createElement('div');
+        divDay5.setAttribute('id','day5-meteo');
+        divMeteo.appendChild(divDay5);
+        
+        let date5 = json.list[32].dt;
+        let dtGMT5 = new Date(date5 * 1000);
+        let dateString5 = dtGMT5.toLocaleDateString();
+        
+        let dateD5 = document.createElement('div');
+        dateD5.setAttribute('class','dateD5');
+        divDay5.appendChild(dateD5);
+        dateD5.innerHTML = dateString5;
+
+        let temp5 = json.list[32].main.temp;
+        let tempD5 = document.createElement('div');
+        tempD5.setAttribute('class','tempD5');
+        divDay5.appendChild(tempD5);
+        tempD5.innerHTML = temp5+'°';
+
+        let weather5 = json.list[32].weather[0].main;
+        let weatherD5 = document.createElement('div');
+        weatherD5.setAttribute('class','weatherD5');
+        divDay5.appendChild(weatherD5);
+        weatherD5.innerHTML = weather5;
+            
+        let icon5 = document.createElement('img');
+        divDay5.append(icon5);
+        let iconE = json.list[32].weather[0].icon;
+        let iconURL5 = 'http://openweathermap.org/img/wn/'+iconE+'@2x.png';
+        icon5.setAttribute("src",iconURL5);
+        }
+
+        catch(error) {
+            alert(error);
+        }
+}
+whatsTheWeather();
+});

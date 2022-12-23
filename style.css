@@ -4,12 +4,22 @@ body {
   background: linear-gradient(180deg, rgb(247, 203, 203), rgb(255, 255, 255));
   display: block;
   font-family: "Unbounded", cursive;
+  color: rgb(54, 54, 54);
 }
 
 .div-header {
   height: 100px;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
+  padding-top: 5px;
+}
+
+.h1-header {
+  margin-bottom: 5px;
+}
+
+.logo-header {
+  width: 60px;
 }
 
 .div-input {
@@ -22,6 +32,7 @@ body {
   border: none;
   border-radius: 5%;
   text-align: center;
+  cursor: pointer;
 }
 
 #button-main {
@@ -32,6 +43,7 @@ body {
 }
 
 #div-city {
+  height: 40px;
   padding: 15px;
   color: white;
   text-transform: uppercase;
@@ -56,60 +68,323 @@ body {
   width: 280px;
   height: 100px;
   background-color: rgb(248, 232, 232);
+  color: rgb(54, 54, 54);
   border-radius: 5%;
   margin: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  align-content: space-between;
-  text-align: center;
+  flex-flow: column wrap;
+  align-content: center;
   line-height: 25px;
+}
+
+.today {
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.weatherD1 {
+  font-size: 13px;
+  font-style: italic;
+}
+
+.icon1 {
+  margin-left: 10px;
+  margin-right: -20px;
 }
 
 #day2-meteo {
   width: 280px;
   height: 100px;
   background-color: rgb(251, 244, 244);
+  color: rgb(54, 54, 54);
   border-radius: 5%;
   margin: 10px;
   display: flex;
   justify-content: center;
-  text-align: center;
+  align-items: center;
+  flex-flow: column wrap;
+  align-content: center;
+  line-height: 25px;
+}
+
+.dateD2 {
+  font-size: 15px;
+  letter-spacing: 2px;
+}
+
+.weatherD2 {
+  font-size: 13px;
+  font-style: italic;
 }
 
 #day3-meteo {
   width: 280px;
   height: 100px;
   background-color: rgb(251, 244, 244);
+  color: rgb(54, 54, 54);
   border-radius: 5%;
   margin: 10px;
   display: flex;
   justify-content: center;
-  text-align: center;
+  align-items: center;
+  flex-flow: column wrap;
+  align-content: center;
+  line-height: 25px;
+}
+
+.dateD3 {
+  font-size: 15px;
+  letter-spacing: 2px;
+}
+
+.weatherD3 {
+  font-size: 13px;
+  font-style: italic;
 }
 
 #day4-meteo {
   width: 280px;
   height: 100px;
   background-color: rgb(251, 244, 244);
+  color: rgb(54, 54, 54);
   border-radius: 5%;
   margin: 10px;
   display: flex;
   justify-content: center;
-  text-align: center;
+  align-items: center;
+  flex-flow: column wrap;
+  align-content: center;
+  line-height: 25px;
+}
+
+.dateD4 {
+  font-size: 15px;
+  letter-spacing: 2px;
+}
+
+.weatherD4 {
+  font-size: 13px;
+  font-style: italic;
 }
 
 #day5-meteo {
   width: 280px;
   height: 100px;
   background-color: rgb(251, 244, 244);
+  color: rgb(54, 54, 54);
   border-radius: 5%;
   margin: 10px;
   display: flex;
   justify-content: center;
-  text-align: center;
+  align-items: center;
+  flex-flow: column wrap;
+  align-content: center;
+  line-height: 25px;
+}
+
+.dateD5 {
+  font-size: 15px;
+  letter-spacing: 2px;
+}
+
+.weatherD5 {
+  font-size: 13px;
+  font-style: italic;
 }
 
 .footer {
   height: 80px;
+}
+
+@media screen and (min-width: 1023px) {
+  .div-header {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+  }
+  .logo-header {
+    width: 120px;
+    margin-top: 50px;
+    margin-left: 30px;
+  }
+  .div-input {
+    display: flex;
+    justify-content: center;
+  }
+  #input-main {
+    font-family: "Unbounded", cursive;
+    border: none;
+    border-radius: 5%;
+    text-align: center;
+  }
+  #button-main {
+    cursor: pointer;
+    border: none;
+    height: 35px;
+    font-size: 20px;
+    border-radius: 5%;
+  }
+  #div-city {
+    height: 50px;
+    padding: 15px;
+    color: white;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: center;
+  }
+  #div-meteo {
+    width: 900px;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    background-color: white;
+    border-radius: 5%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+  }
+  #day1-meteo {
+    width: 280px;
+    height: 200px;
+    background-color: rgb(248, 232, 232);
+    color: rgb(54, 54, 54);
+    border-radius: 5%;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    align-content: center;
+    line-height: 25px;
+  }
+  .today {
+    text-transform: uppercase;
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    line-height: 50px;
+  }
+  .weatherD1 {
+    font-size: 13px;
+    font-style: italic;
+    margin-right: 5px;
+  }
+  .icon1 {
+    margin-left: -20px;
+  }
+  #day2-meteo {
+    width: 280px;
+    height: 200px;
+    background-color: rgb(251, 244, 244);
+    color: rgb(54, 54, 54);
+    border-radius: 5%;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    align-content: center;
+    line-height: 25px;
+  }
+  .dateD2 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 2px;
+  }
+  .weatherD2 {
+    font-size: 13px;
+    font-style: italic;
+    margin-right: 5px;
+  }
+  #day3-meteo {
+    width: 280px;
+    height: 200px;
+    background-color: rgb(251, 244, 244);
+    color: rgb(54, 54, 54);
+    border-radius: 5%;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    align-content: center;
+    line-height: 25px;
+  }
+  .dateD3 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 2px;
+  }
+  .weatherD3 {
+    font-size: 13px;
+    font-style: italic;
+    margin-right: 5px;
+  }
+  #day4-meteo {
+    width: 280px;
+    height: 200px;
+    background-color: rgb(251, 244, 244);
+    color: rgb(54, 54, 54);
+    border-radius: 5%;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    align-content: center;
+    line-height: 25px;
+  }
+  .dateD4 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 2px;
+  }
+  .weatherD4 {
+    font-size: 13px;
+    font-style: italic;
+    margin-right: 5px;
+  }
+  #day5-meteo {
+    width: 280px;
+    height: 200px;
+    background-color: rgb(251, 244, 244);
+    color: rgb(54, 54, 54);
+    border-radius: 5%;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    align-content: center;
+    line-height: 25px;
+  }
+  .dateD5 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 2px;
+  }
+  .weatherD5 {
+    font-size: 13px;
+    font-style: italic;
+    margin-right: 5px;
+  }
+  .footer {
+    height: 80px;
+  }
 }/*# sourceMappingURL=style.css.map */
