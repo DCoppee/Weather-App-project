@@ -1,13 +1,11 @@
 //Functional code, but... I do repeat myself ;-)
 
 const api = 'b3a019163e3b097b458963f8383804bd';
-
-const body = document.body;
-
 const input = document.querySelector('#input-main');
 const btn = document.querySelector('#button-main');
+let main = document.querySelector('.main');
 
-let search = btn.addEventListener('click',function() {
+btn.addEventListener('click',function() {
 
     let userLoc = input.value;
     
@@ -17,8 +15,6 @@ let search = btn.addEventListener('click',function() {
 
             let response = await fetch('http://api.openweathermap.org/data/2.5/forecast?q='+userLoc+'&appid='+api+'&units=metric')
             json = await response.json()
-        
-            let main = document.querySelector('.main');
 
             function whichCity(){
                 let cityName = json.city.name;
@@ -31,7 +27,8 @@ let search = btn.addEventListener('click',function() {
                 let city = document.createElement('div');
                 city.setAttribute('id','div-city');
                 main.appendChild(city);
-                city.innerHTML = cityName+', '+country+"<br />"+time;
+                city.innerHTML = cityName+', '+country+"<br />"+time; 
+                            //`${cityName}, ${country}<br />${time}`
             }
             whichCity();
 
@@ -210,6 +207,75 @@ let search = btn.addEventListener('click',function() {
         catch(error) {
             alert(error);
         }
-}
+    }
 whatsTheWeather();
 });
+
+//Function to display the data when pressing 'enter'
+input.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      btn.click();
+    }
+});
+
+//chatGPT proposal to refactor the data display
+/*  const weatherData = [
+      {
+        date: 'Today',
+        temp: json.list[0].main.temp,
+        weather: json.list[0].weather[0].main,
+        icon: json.list[0].weather[0].icon,
+      },
+      {
+        date: new Date(json.list[8].dt * 1000).toLocaleDateString(),
+        temp: json.list[8].main.temp,
+        weather: json.list[8].weather[0].main,
+        icon: json.list[8].weather[0].icon,
+      },
+      {
+        date: new Date(json.list[16].dt * 1000).toLocaleDateString(),
+        temp: json.list[16].main.temp,
+        weather: json.list[16].weather[0].main,
+        icon: json.list[16].weather[0].icon,
+      },
+      {
+        date: new Date(json.list[24].dt * 1000).toLocaleDateString(),
+        temp: json.list[24].main.temp,
+        weather: json.list[24].weather[0].main,
+        icon: json.list[24].weather[0].icon,
+      },
+      {
+        date: new Date(json.list[32].dt * 1000).toLocaleDateString(),
+        temp: json.list[32].main.temp,
+        weather: json.list[32].weather[0].main,
+        icon: json.list[32].weather[0].icon,
+      },
+    ];
+
+    weatherData.forEach(data => {
+      const divDay = document.createElement('div');
+      divDay.setAttribute('class', 'day-meteo');
+      divMeteo.appendChild(divDay);
+
+      const date = document.createElement('div');
+      date.setAttribute('class', 'date');
+      date.innerHTML = data.date;
+      divDay.appendChild(date);
+
+      const temp = document.createElement('div');
+      temp.setAttribute('class', 'temp');
+      temp.innerHTML = `${data.temp}°`;
+      divDay.appendChild(temp);
+
+      const weather = document.createElement('div');
+      weather.setAttribute('class', 'weather');
+      weather.innerHTML = data.weather;
+      divDay.appendChild(weather);
+
+      const icon = document.createElement('img');
+      icon.setAttribute('class', 'icon');
+      const iconURL = `http://openweathermap.org/img/wn/${data.icon}@2x.png`;
+      icon.setAttribute('src', iconURL);
+      divDay.append(icon);
+    });
+*/

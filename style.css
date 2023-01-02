@@ -40,6 +40,7 @@ body {
   height: 28px;
   font-size: 10px;
   border-radius: 5%;
+  cursor: pointer;
 }
 
 #div-city {
@@ -213,11 +214,8 @@ body {
     margin-left: 30px;
   }
   #button-main {
-    cursor: pointer;
-    border: none;
     height: 35px;
     font-size: 20px;
-    border-radius: 5%;
   }
   #div-city {
     height: 50px;
