@@ -67,7 +67,7 @@ body {
 #day1-meteo {
   width: 280px;
   height: 100px;
-  background-color: rgb(248, 232, 232);
+  background-color: rgb(255, 195, 195);
   color: rgb(54, 54, 54);
   border-radius: 5%;
   margin: 10px;
@@ -98,7 +98,7 @@ body {
 #day2-meteo {
   width: 280px;
   height: 100px;
-  background-color: rgb(251, 244, 244);
+  background-color: rgb(255, 224, 224);
   color: rgb(54, 54, 54);
   border-radius: 5%;
   margin: 10px;
@@ -123,7 +123,7 @@ body {
 #day3-meteo {
   width: 280px;
   height: 100px;
-  background-color: rgb(251, 244, 244);
+  background-color: rgb(255, 224, 224);
   color: rgb(54, 54, 54);
   border-radius: 5%;
   margin: 10px;
@@ -148,7 +148,7 @@ body {
 #day4-meteo {
   width: 280px;
   height: 100px;
-  background-color: rgb(251, 244, 244);
+  background-color: rgb(255, 224, 224);
   color: rgb(54, 54, 54);
   border-radius: 5%;
   margin: 10px;
@@ -173,7 +173,7 @@ body {
 #day5-meteo {
   width: 280px;
   height: 100px;
-  background-color: rgb(251, 244, 244);
+  background-color: rgb(255, 224, 224);
   color: rgb(54, 54, 54);
   border-radius: 5%;
   margin: 10px;
@@ -212,16 +212,6 @@ body {
     margin-top: 50px;
     margin-left: 30px;
   }
-  .div-input {
-    display: flex;
-    justify-content: center;
-  }
-  #input-main {
-    font-family: "Unbounded", cursive;
-    border: none;
-    border-radius: 5%;
-    text-align: center;
-  }
   #button-main {
     cursor: pointer;
     border: none;
@@ -232,49 +222,22 @@ body {
   #div-city {
     height: 50px;
     padding: 15px;
-    color: white;
-    text-transform: uppercase;
     font-size: 20px;
-    font-weight: bolder;
-    text-align: center;
   }
   #div-meteo {
     width: 900px;
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
-    padding-top: 1px;
-    padding-bottom: 1px;
-    background-color: white;
-    border-radius: 5%;
-    margin: auto;
     display: flex;
     flex-direction: row;
   }
   #day1-meteo {
     width: 280px;
     height: 200px;
-    background-color: rgb(248, 232, 232);
-    color: rgb(54, 54, 54);
-    border-radius: 5%;
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column wrap;
-    align-content: center;
-    line-height: 25px;
   }
   .today {
-    text-transform: uppercase;
     font-size: 25px;
-    font-weight: 900;
-    letter-spacing: 2px;
     line-height: 50px;
   }
   .weatherD1 {
-    font-size: 13px;
-    font-style: italic;
     margin-right: 5px;
   }
   .icon1 {
@@ -283,108 +246,54 @@ body {
   #day2-meteo {
     width: 280px;
     height: 200px;
-    background-color: rgb(251, 244, 244);
-    color: rgb(54, 54, 54);
-    border-radius: 5%;
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column wrap;
-    align-content: center;
-    line-height: 25px;
   }
   .dateD2 {
     margin-top: 20px;
     margin-bottom: 5px;
     font-size: 16px;
     font-weight: 900;
-    letter-spacing: 2px;
   }
   .weatherD2 {
-    font-size: 13px;
-    font-style: italic;
     margin-right: 5px;
   }
   #day3-meteo {
     width: 280px;
     height: 200px;
-    background-color: rgb(251, 244, 244);
-    color: rgb(54, 54, 54);
-    border-radius: 5%;
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column wrap;
-    align-content: center;
-    line-height: 25px;
   }
   .dateD3 {
     margin-top: 20px;
     margin-bottom: 5px;
     font-size: 16px;
     font-weight: 900;
-    letter-spacing: 2px;
   }
   .weatherD3 {
-    font-size: 13px;
     font-style: italic;
     margin-right: 5px;
   }
   #day4-meteo {
     width: 280px;
     height: 200px;
-    background-color: rgb(251, 244, 244);
-    color: rgb(54, 54, 54);
-    border-radius: 5%;
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column wrap;
-    align-content: center;
-    line-height: 25px;
   }
   .dateD4 {
     margin-top: 20px;
     margin-bottom: 5px;
     font-size: 16px;
     font-weight: 900;
-    letter-spacing: 2px;
   }
   .weatherD4 {
-    font-size: 13px;
-    font-style: italic;
     margin-right: 5px;
   }
   #day5-meteo {
     width: 280px;
     height: 200px;
-    background-color: rgb(251, 244, 244);
-    color: rgb(54, 54, 54);
-    border-radius: 5%;
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column wrap;
-    align-content: center;
-    line-height: 25px;
   }
   .dateD5 {
     margin-top: 20px;
     margin-bottom: 5px;
     font-size: 16px;
     font-weight: 900;
-    letter-spacing: 2px;
   }
   .weatherD5 {
-    font-size: 13px;
-    font-style: italic;
     margin-right: 5px;
-  }
-  .footer {
-    height: 80px;
   }
 }/*# sourceMappingURL=style.css.map */
