@@ -16,7 +16,7 @@ btn.addEventListener('click',function() {
             let response = await fetch('http://api.openweathermap.org/data/2.5/forecast?q='+userLoc+'&appid='+api+'&units=metric')
             json = await response.json()
 
-            function whichCity(){
+            function inputCity(){
                 let cityName = json.city.name;
                 let country = json.city.country;
                 let timeZone = json.city.timezone;
@@ -30,7 +30,7 @@ btn.addEventListener('click',function() {
                 city.innerHTML = cityName+', '+country+"<br />"+time; 
                             //`${cityName}, ${country}<br />${time}`
             }
-            whichCity();
+            inputCity();
 
 //---Création de la div météo générale---//
             let divMeteo = document.createElement('div');
