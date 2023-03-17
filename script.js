@@ -220,64 +220,77 @@ input.addEventListener("keydown", function (event) {
   }
 });
 
-//chatGPT proposal to refactor the data display
-/*  const weatherData = [
-      {
-        date: 'Today',
-        temp: json.list[0].main.temp,
-        weather: json.list[0].weather[0].main,
-        icon: json.list[0].weather[0].icon,
-      },
-      {
-        date: new Date(json.list[8].dt * 1000).toLocaleDateString(),
-        temp: json.list[8].main.temp,
-        weather: json.list[8].weather[0].main,
-        icon: json.list[8].weather[0].icon,
-      },
-      {
-        date: new Date(json.list[16].dt * 1000).toLocaleDateString(),
-        temp: json.list[16].main.temp,
-        weather: json.list[16].weather[0].main,
-        icon: json.list[16].weather[0].icon,
-      },
-      {
-        date: new Date(json.list[24].dt * 1000).toLocaleDateString(),
-        temp: json.list[24].main.temp,
-        weather: json.list[24].weather[0].main,
-        icon: json.list[24].weather[0].icon,
-      },
-      {
-        date: new Date(json.list[32].dt * 1000).toLocaleDateString(),
-        temp: json.list[32].main.temp,
-        weather: json.list[32].weather[0].main,
-        icon: json.list[32].weather[0].icon,
-      },
-    ];
+/* ----------------------------- Essai de refactorisation -------------------------------------
+const API_KEY = "b3a019163e3b097b458963f8383804bd";
+const main = document.querySelector(".main");
+const input = document.querySelector("#input-main");
+const btn = document.querySelector("#button-main");
 
-    weatherData.forEach(data => {
-      const divDay = document.createElement('div');
-      divDay.setAttribute('class', 'day-meteo');
-      divMeteo.appendChild(divDay);
+// Récupère les données météo pour une ville donnée
+async function getWeatherData(city) {
+  const response = await fetch(
+    `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`
+  );
+  const data = await response.json();
+  return data;
+}
 
-      const date = document.createElement('div');
-      date.setAttribute('class', 'date');
-      date.innerHTML = data.date;
-      divDay.appendChild(date);
+// Ajoute une div contenant les informations de la ville et la date
+function addCityInfo(city, country, timeZone) {
+  const cityDiv = document.createElement("div");
+  cityDiv.setAttribute("id", "div-city");
+  main.appendChild(cityDiv);
 
-      const temp = document.createElement('div');
-      temp.setAttribute('class', 'temp');
-      temp.innerHTML = `${data.temp}°`;
-      divDay.appendChild(temp);
+  const date = new Date().toLocaleString({ timeZone });
+  const cityInfo = `${city}, ${country}<br />${date}`;
+  cityDiv.innerHTML = cityInfo;
+}
 
-      const weather = document.createElement('div');
-      weather.setAttribute('class', 'weather');
-      weather.innerHTML = data.weather;
-      divDay.appendChild(weather);
+// Ajoute une div contenant les informations météo pour un jour donné
+function addWeatherInfo(date, temp, weather, iconURL) {
+  const dayDiv = document.createElement("div");
+  dayDiv.setAttribute("class", "day");
+  main.appendChild(dayDiv);
 
-      const icon = document.createElement('img');
-      icon.setAttribute('class', 'icon');
-      const iconURL = `http://openweathermap.org/img/wn/${data.icon}@2x.png`;
-      icon.setAttribute('src', iconURL);
-      divDay.append(icon);
-    });
-*/
+  const dateDiv = document.createElement("div");
+  dateDiv.setAttribute("class", "date");
+  dayDiv.appendChild(dateDiv);
+  dateDiv.innerHTML = date;
+
+  const tempDiv = document.createElement("div");
+  tempDiv.setAttribute("class", "temp");
+  dayDiv.appendChild(tempDiv);
+  tempDiv.innerHTML = `${temp}°`;
+
+  const weatherDiv = document.createElement("div");
+  weatherDiv.setAttribute("class", "weather");
+  dayDiv.appendChild(weatherDiv);
+  weatherDiv.innerHTML = weather;
+
+  const icon = document.createElement("img");
+  icon.setAttribute("class", "icon");
+  dayDiv.appendChild(icon);
+  icon.setAttribute("src", iconURL);
+}
+
+// Affiche les informations météo pour les 3 prochains jours
+async function showWeather() {
+  const city = input.value;
+  const data = await getWeatherData(city);
+
+  const { name: cityName, country, timezone } = data.city;
+
+  addCityInfo(cityName, country, timezone);
+
+  for (let i = 0; i < 5; i++) {
+    const weather = data.list[i * 8];
+    const date = new Date(weather.dt * 1000).toLocaleDateString();
+    const temp = Math.round(weather.main.temp);
+    const icon = weather.weather[0].icon;
+    const iconURL = `http://openweathermap.org/img/wn/${icon}.png`;
+
+    addWeatherInfo(date, temp, weather.weather[0].main, iconURL);
+  }
+}
+
+btn.addEventListener("click", showWeather); */
